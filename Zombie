@@ -1,5 +1,6 @@
 import random
 
+num = 0
 def zombie(looting):
     butt = random.randrange(1,1000)
     print("El Zombie Di3d")
@@ -50,7 +51,7 @@ def zombie(looting):
 
 choice = 'a'
 while choice != 'q':
-    print("kjnfffffffflflkvblkf")
+    print("Press random number")
     choice = input()
     if choice != 'q':
         zombie(int(choice))
