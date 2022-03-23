@@ -6,6 +6,39 @@ screen.fill((0,0,0))
 clock = pygame.time.Clock() #set up clock
 gameover = False #variable to run our game loop
 
+#rainbow background
+class rainbow:
+    def __init__(self, xpos, ypos):
+        self.x = xpos
+        self.y = ypos
+    def draw(self):
+        #draws a heart using circles and triangles
+        pygame.draw.circle(screen, (250, 250, 250), (self.x, self.y+100), 40)
+        pygame.draw.circle(screen, (250, 250, 250), (self.x+100, self.y+100), 40)
+        pygame.draw.circle(screen, (250, 250, 250), (self.x+50, self.y+100), 40)
+        pygame.draw.circle(screen, (250, 250, 250), (self.x+50, self.y+50), 40)
+        pygame.draw.arc(screen, (255, 0, 0), (self.x-25, self.y-60, 150, 150), 7*3.14/4, 5*3.14/4, 8)
+        pygame.draw.arc(screen, (255, 255, 0), (self.x-15, self.y-45, 130, 120), 7*3.14/4, 5*3.14/4, 8)
+        pygame.draw.arc(screen, (0, 255, 0), (self.x+5, self.y-35, 90, 100), 7*3.14/4, 5*3.14/4, 8)
+        pygame.draw.arc(screen, (0, 0, 255), (self.x+10, self.y-20, 80, 90), 7*3.14/4, 5*3.14/4, 8)
+
+#instantiate
+r1 =rainbow(200, 300)
+r2 =rainbow(400, 100)
+r3 =rainbow(600,200)
+
+#Creates sprite
+Link = pygame.image.load('fly2.png') #load your spritesheet
+Link.set_colorkey((255, 0, 255)) #this makes bright pink (255, 0, 255) transparent (sort of)
+
+#animation variables variables
+frameWidth = 16
+frameHeight = 16
+RowNum = 0 #for left animation, this will need to change for other animations
+frameNum = 0
+ticker = 0
+
+
 #CONSTANTS
 LEFT=0
 RIGHT=1
@@ -194,6 +227,31 @@ while not gameover: #GAME LOOP##################################################
     xpos2+=vx2 
     ypos2+=vy2
     
+     #ANIMATION-------------------------------------------------------------------
+        
+    # Update Animation Information
+    # Only animate when in motion
+    
+    if vx>0:
+        RowNum = 0
+    if vx < 0: #left animation
+        RowNum = 0
+        # Ticker is a spedometer. We don't want Link animating as fast as the
+        # processor can process! Update Animation Frame each time ticker goes over
+        ticker+=1
+    if vx > 0: #right animation
+        RowNum = 1
+        # Ticker is a spedometer. We don't want Link animating as fast as the
+        # processor can process! Update Animation Frame each time ticker goes over
+        ticker+=1
+    if ticker%10==0: #only change frames every 10 ticks
+        frameNum+=1
+           #If we are over the number of frames in our sprite, reset to 0.
+           #In this particular case, there are 10 frames (0 through 9)
+        #ticker+=1
+    if frameNum>3: 
+        frameNum = 0
+    
   
     # RENDER Section--------------------------------------------------------------------------------
             
@@ -219,6 +277,15 @@ while not gameover: #GAME LOOP##################################################
 
     #5 platform
     pygame.draw.rect(screen, (0, 100, 200), (500, 750, 100, 20))
+    
+    #rainbowss
+    r1.draw()
+    r2.draw()
+    r3.draw()
+    
+    #sprite loading
+    screen.blit(Link, (xpos, ypos), (frameWidth*frameNum, RowNum*frameHeight, frameWidth, frameHeight))
+  
 
     pygame.display.flip()#this actually puts the pixel on the screen
     
