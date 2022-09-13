@@ -10,7 +10,7 @@ clock = pygame.time.Clock()
 #variables---------------
 doExit = False
 
-class fish:
+class fish: #Fish variables 
   def __init__(self):
     self.xpos = random.randrange(0,700)
     self.ypos = random.randrange(100,450)
@@ -23,7 +23,7 @@ class fish:
     self.alive = True
     self.onHook = False
     
-  def draw(self):
+  def draw(self): #How to draw the fish 
     if self.alive is True:
       if self.vx <= 0:
         pygame.draw.ellipse(screen, (self.red,self.green,self.blue), (self.xpos, self.ypos, 25, 15))
@@ -34,15 +34,15 @@ class fish:
          pygame.draw.circle(screen, (0, 0, 0), (self.xpos + 5, self.ypos + 5), 3)
          pygame.draw.polygon(screen, (self.red,self.green,self.blue), ((self.xpos + 20, self.ypos + 5), (self.xpos + 30, self.ypos - 5), (self.xpos + 30, self.ypos + 15)))
   
-  def move(self):
-    if self.xpos > 680:
-      self.xpos = 680
+  def move(self):# Fish movements 
+    if self.xpos > 600:
+      self.xpos = 600
       self.vx *= -1
     if self.xpos < 0:
       self.xpos = 0
       self.vx *= -1
-    if self.ypos > 500:
-      self.ypos = 500
+    if self.ypos > 300:
+      self.ypos = 300
       self.vy *= -1
     if self.ypos < 100:
       self.ypos = 100
@@ -89,6 +89,7 @@ while doExit is False:
     school[i].move()
   #render section---------------------------------
   screen.fill((0, 0, 255))
+  pygame.draw.rect(screen, (245,245,220), (0, 250, 800, 200))
 
   #frank.draw()
   #freddy.draw()
