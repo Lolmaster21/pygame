@@ -66,9 +66,7 @@ for i in range(20):
 #bru.PlayIntro()
 
 
-#frank = fish()
-#freddy = fish()
-#francis = fish()
+
 
 while doExit is False:
 
@@ -82,18 +80,18 @@ while doExit is False:
 
   
 
-  #frank.move()
-  #freddy.move()
-  #francis.move()
+
   for i in range(20):
     school[i].move()
   #render section---------------------------------
   screen.fill((0, 0, 255))
-  pygame.draw.rect(screen, (245,245,220), (0, 250, 800, 200))
-
-  #frank.draw()
-  #freddy.draw()
-  #francis.draw()
+  pygame.draw.rect(screen, (240,240,220), (0, 250, 800, 200))#Ocean floor 
+  pygame.draw.rect(screen, (192,192,192), (650, 490, 75, 100))#Fish food 
+  #fish logo 
+  pygame.draw.ellipse(screen, (255, 128, 0), (685, 545, 40, 30))
+  pygame.draw.ellipse(screen, (0,0,0), (700, 550, 10, 10))
+  pygame.draw.polygon(screen, (255, 128, 0), ((710,510), (680, 520), (710, 540)))
+  
   for i in range(20):
     school[i].draw()
 
