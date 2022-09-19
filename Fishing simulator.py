@@ -88,9 +88,11 @@ while doExit is False:
   pygame.draw.rect(screen, (240,240,220), (0, 250, 800, 200))#Ocean floor 
   pygame.draw.rect(screen, (192,192,192), (650, 490, 75, 100))#Fish food 
   #fish logo 
-  pygame.draw.ellipse(screen, (255, 128, 0), (685, 545, 40, 30))
-  pygame.draw.ellipse(screen, (0,0,0), (700, 550, 10, 10))
+  pygame.draw.ellipse(screen, (255, 128, 0), (680, 535, 40, 30))
+  pygame.draw.ellipse(screen, (0,0,0), (700, 540, 10, 10))
   pygame.draw.polygon(screen, (255, 128, 0), ((710,510), (680, 520), (710, 540)))
+  pygame.draw.polygon(screen, (255, 128, 0), ((710,530), (650, 550), (680, 570)))
+
   
   for i in range(20):
     school[i].draw()
