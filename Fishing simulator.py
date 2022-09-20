@@ -1,4 +1,5 @@
 import pygame
+import math 
 #import bru
 import random
 pygame.init()  
@@ -6,6 +7,14 @@ pygame.init()
 pygame.display.set_caption("fish")  
 screen = pygame.display.set_mode((800, 800))  
 clock = pygame.time.Clock()
+
+
+numClicks = 0
+
+#font
+font= pygame.font.Font('freesansbold.ttf',32)
+text1 = font.render('score:',False,(0,0,200))
+
 
 #variables---------------
 doExit = False
@@ -84,10 +93,7 @@ while doExit is False:
   clock.tick(60)
 
 
-  for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            doExit = True
-
+ 
 
   
 
@@ -100,6 +106,10 @@ while doExit is False:
   pygame.draw.rect(screen, (192,192,192), (650, 490, 75, 100))#Fish food
   
   pygame.draw.rect(screen, (0,0,0), (200, 200, 420, 420),10)
+  pygame.draw.rect(screen, (0,255,0), (650, 650, 100, 60))#Dollar bill
+  pygame.draw.rect(screen, (0,200,0), (650, 650, 50, 50),10)#Dollar bill 
+
+
   #fish logo 
   pygame.draw.ellipse(screen, (255, 128, 0), (680, 535, 40, 30))
   pygame.draw.ellipse(screen, (0,0,0), (700, 540, 10, 10))
