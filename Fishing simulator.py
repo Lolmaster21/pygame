@@ -13,6 +13,10 @@ numClicks = 0
 
 print(pygame.font.get_fonts())
 
+#Seashell image
+#shelly = pygame.image.load("seashell.png")
+#screen.blit(shelly, (600,600))
+
 #player variables
 xpos = 0
 ypos = 0
@@ -101,11 +105,20 @@ for i in range(20):
 while doExit is False:
 
   clock.tick(60)
-  event = pygame.event.wait()
+        
+  for event in pygame.event.get():
+        if event.type == pygame.QUIT: #close game window
+            pygame.quit()
+            quit()
   if event.type == pygame.MOUSEBUTTONDOWN:
       if math.sqrt((mousePos[0]-circX)**2 +(mousePos[0]-circY)**2)<radius:
         numClicks+=1
-      print("CLICK")  
+        mousePos = event.pos #refreshes mouse position
+        print("mouse position: (",mousePos[0]," , ",mousePos[1], ")")
+        
+
+      print("CLICK")
+
 
 
   for i in range(20):
@@ -115,28 +128,31 @@ while doExit is False:
   pygame.draw.rect(screen, (240,240,220), (0, 250, 800, 200))#Ocean floor 
   pygame.draw.rect(screen, (192,192,192), (650, 490, 75, 100))#Fish food
   
-  pygame.draw.rect(screen, (0,0,0), (200, 200, 420, 420),10)
-  pygame.draw.rect(screen, (0,255,0), (650, 650, 100, 60))#Dollar bill
-  pygame.draw.rect(screen, (0,200,0), (675, 665, 50, 35),5)#Dollar bill 
-
-
   #fish logo 
   pygame.draw.ellipse(screen, (255, 128, 0), (680, 535, 40, 30))
   pygame.draw.ellipse(screen, (0,0,0), (700, 540, 10, 10))
   pygame.draw.polygon(screen, (255, 128, 0), ((690,510), (680, 520), (710, 540)))
   pygame.draw.polygon(screen, (255, 128, 0), ((680,530), (640, 550), (680, 570)))
   
+  #Hunger bar
+  pygame.draw.rect(screen, (0,0,0), (70, 50, 600, 35),5)
+  
+  #Text
   screen.blit(text1,(10,10))
   screen.blit(text2,(625,475))
   screen.blit(text3,(150,12))
   text3 = font.render(str(int(numClicks)),1,(255,255,255))
-
+  
+  #Seashell image
+  
+  
 
 
   
-  for i in range(20):
+  for i in range(10):
     school[i].draw()
   pygame.display.flip()
 
 #end game loop------------------------------------
 pygame.quit()
+
