@@ -11,10 +11,22 @@ clock = pygame.time.Clock()
 
 numClicks = 0
 
-#font
-font= pygame.font.Font('freesansbold.ttf',32)
-text1 = font.render('score:',False,(0,0,200))
+print(pygame.font.get_fonts())
 
+#player variables
+xpos = 0
+ypos = 0
+mousePos = (xpos, ypos) #variable mousePos stores TWO numbers
+numClicks = 0
+circX = 650
+circY = 650
+radius = 100
+
+#font
+font= pygame.font.Font('freesansbold.ttf',20)
+text1 = font.render('Fish Moneyyy:',False,(0,255,255))
+text2 = font.render('Feed the fishh',False,(255,255,255))
+text3 = font.render(str(int(numClicks)),1,(0,0,200))
 
 #variables---------------
 doExit = False
@@ -86,16 +98,14 @@ for i in range(20):
 #bru.PlayIntro()
 
 
-
-
 while doExit is False:
 
   clock.tick(60)
-
-
- 
-
-  
+  event = pygame.event.wait()
+  if event.type == pygame.MOUSEBUTTONDOWN:
+      if math.sqrt((mousePos[0]-circX)**2 +(mousePos[0]-circY)**2)<radius:
+        numClicks+=1
+      print("CLICK")  
 
 
   for i in range(20):
@@ -107,7 +117,7 @@ while doExit is False:
   
   pygame.draw.rect(screen, (0,0,0), (200, 200, 420, 420),10)
   pygame.draw.rect(screen, (0,255,0), (650, 650, 100, 60))#Dollar bill
-  pygame.draw.rect(screen, (0,200,0), (650, 650, 50, 50),10)#Dollar bill 
+  pygame.draw.rect(screen, (0,200,0), (675, 665, 50, 35),5)#Dollar bill 
 
 
   #fish logo 
@@ -115,6 +125,13 @@ while doExit is False:
   pygame.draw.ellipse(screen, (0,0,0), (700, 540, 10, 10))
   pygame.draw.polygon(screen, (255, 128, 0), ((690,510), (680, 520), (710, 540)))
   pygame.draw.polygon(screen, (255, 128, 0), ((680,530), (640, 550), (680, 570)))
+  
+  screen.blit(text1,(10,10))
+  screen.blit(text2,(625,475))
+  screen.blit(text3,(150,12))
+  text3 = font.render(str(int(numClicks)),1,(255,255,255))
+
+
 
   
   for i in range(20):
