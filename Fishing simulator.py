@@ -4,27 +4,22 @@ import math
 import random
 pygame.init()  
 
-pygame.display.set_caption("fish")  
-screen = pygame.display.set_mode((800, 800))  
+pygame.display.set_caption("fish")
+screen = pygame.display.set_mode((800, 800))  # creates game screen 
+background2 = pygame.image.load('background2.png')
 clock = pygame.time.Clock()
+background2 = pygame.transform.scale(background2,(800,800))
 
 
 numClicks = 0
 
 print(pygame.font.get_fonts())
 
-#Seashell image
-#shelly = pygame.image.load("seashell.png")
-#screen.blit(shelly, (600,600))
-
 #player variables
 xpos = 0
 ypos = 0
 mousePos = (xpos, ypos) #variable mousePos stores TWO numbers
 numClicks = 0
-circX = 650
-circY = 650
-radius = 100
 
 #font
 font= pygame.font.Font('freesansbold.ttf',20)
@@ -100,9 +95,12 @@ for i in range(20):
   school.append(fish())
 
 #bru.PlayIntro()
-
+circx = 690
+circy = 510
+Radius = 200
 
 while doExit is False:
+
 
   clock.tick(60)
         
@@ -124,7 +122,7 @@ while doExit is False:
   for i in range(20):
     school[i].move()
   #render section---------------------------------
-  screen.fill((0, 0, 255))
+  screen.blit(background2,(0,0)) #clear screen between loops
   pygame.draw.rect(screen, (240,240,220), (0, 250, 800, 200))#Ocean floor 
   pygame.draw.rect(screen, (192,192,192), (650, 490, 75, 100))#Fish food
   
@@ -142,6 +140,9 @@ while doExit is False:
   screen.blit(text2,(625,475))
   screen.blit(text3,(150,12))
   text3 = font.render(str(int(numClicks)),1,(255,255,255))
+  screen.blit(screen,(0,0)) #clear screen between loops
+  
+
   
   #Seashell image
   
@@ -155,4 +156,3 @@ while doExit is False:
 
 #end game loop------------------------------------
 pygame.quit()
-
