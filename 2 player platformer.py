@@ -28,8 +28,8 @@ r2 =rainbow(400, 100)
 r3 =rainbow(600,200)
 
 #Creates sprite
-Link = pygame.image.load('fly2.png') #load your spritesheet
-Link.set_colorkey((255, 0, 255)) #this makes bright pink (255, 0, 255) transparent (sort of)
+# Link = pygame.image.load('fly2.png') #load your spritesheet
+# Link.set_colorkey((255, 0, 255)) #this makes bright pink (255, 0, 255) transparent (sort of)
 
 #animation variables variables
 frameWidth = 16
@@ -286,7 +286,7 @@ while not gameover: #GAME LOOP##################################################
     r3.draw()
     
     #sprite loading
-    screen.blit(Link, (xpos, ypos), (frameWidth*frameNum, RowNum*frameHeight, frameWidth, frameHeight))
+#     screen.blit(Link, (xpos, ypos), (frameWidth*frameNum, RowNum*frameHeight, frameWidth, frameHeight))
   
 
     pygame.display.flip()#this actually puts the pixel on the screen
