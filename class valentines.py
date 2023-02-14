@@ -19,9 +19,13 @@ class heart:
         self.ypos = ypos
         
     def draw(self):
-        pygame.draw.circle(screen, (random.randrange(1,255), random.randrange(1,255), random.randrange(1,255)), (self.xpos, self.ypos), 20)
-        pygame.draw.circle(screen, (random.randrange(1,255), random.randrange(1,255), random.randrange(1,255)), (self.xpos+40, self.ypos), 20)
-        pygame.draw.polygon(screen, (random.randrange(1,255), random.randrange(1,255), random.randrange(1,255)), ((self.xpos-20, self.ypos+5), (self.xpos+59, self.ypos+5), (self.xpos+20, self.ypos+50)))
+        
+        color1 = random.randrange(0,255)
+        color2 = random.randrange(0,255)
+        color3 = random.randrange(0,255)
+        pygame.draw.circle(screen, (color1,color2,color3),(self.xpos,self.ypos),20)
+        pygame.draw.circle(screen, (color1,color2,color3),(self.xpos+40,self.ypos),20)
+        pygame.draw.polygon(screen,(color1,color2,color3),((self.xpos-20,self.ypos+5),(self.xpos+59, self.ypos+5),(self.xpos+20,self.ypos+50)))
 
     def move(self):
         if self.ypos > 800:
@@ -33,10 +37,10 @@ class heart:
         self.move()
         self.draw()
         
-rain = []
+love = []
+love =[heart(random.randrange(0,800),random.randrange(0,800)) for i in range(90)]
 
-for i in range(70):
-    rain.append(heart(random.randrange(1,750), random.randrange(1,750)))
+
 #------------------------------------------------------------------------------------------------------------
 v1 = heart(250,300)  
 v2 = heart(500,500)
@@ -48,9 +52,9 @@ while True:
     v1.update()
     v2.update()
     
-    for i in range(len(rain)):
-        timer = rain[i].move()
-        rain[i].draw()
+    for i in range(len(love)):
+        timer = love[i].move()
+        love[i].draw()
         
 
     pygame.display.flip()
