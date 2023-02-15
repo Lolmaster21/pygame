@@ -72,9 +72,11 @@ while not gameover: #GAME LOOP------------------------------------------------
     screen.fill((0,0,0)) #wipe screen so it doesn't smear
     
     #Player 1
-    pygame.draw.rect(screen, (0, 250,0), (xpos, ypos, 70, 25))
-    pygame.draw.rect(screen, (0, 250,0), (xpos+15, ypos-15, 40, 15))
-    pygame.draw.rect(screen, (0, 250,0), (xpos+28, ypos-20, 15, 10))
+    pygame.draw.rect(screen, (0, 250,0), (xpos, 750, 60, 20))
+    pygame.draw.rect(screen, (0, 250,0), (xpos+5, 745, 50, 20))
+    pygame.draw.rect(screen, (0, 250,0), (xpos+25, 736, 10, 20))
+    pygame.draw.rect(screen, (0, 250,0), (xpos+28, 732, 4, 20))
+
 
   
 
