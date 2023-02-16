@@ -30,30 +30,27 @@ class Alien:
     def draw(self):
         pygame.draw.rect(screen,(250,250,250),(self.xpos,self.ypos, 40,40))
     
-    def move(self, time):
-        if timer %100==0:
-            self.ypos += 100
-            self.direction =-1
-            return 0
-        if time % 100 == 0:
-            self.xpos += 50*self.direction
-            
-        return time
-            
-            
-    
+    def move(self):
         
-            
+        if timer %100 == 0:
+            self.xpos += 50
+            print ("moving right")
+               
 
 bob = []
 for i in range(4):
     for j in range(10):
         bob.append(Alien(j*70+30, i*70+30))
+        
+   
 
 while not gameover: #GAME LOOP------------------------------------------------
     clock.tick(60) #FPS
     timer += 1
+    
+    
    
+
 
     
     #Input Section------------------------------------------------------------
@@ -97,7 +94,12 @@ while not gameover: #GAME LOOP------------------------------------------------
         vx = 0
 
     #update player position
-    xpos+=vx 
+    xpos+=vx
+    
+    
+    #Physics section--------------------------------------------------------------
+    for i in range(len(bob)):
+        bob[i].move()     
   
     # RENDER Section--------------------------------------------------------------------------------
             
@@ -111,7 +113,7 @@ while not gameover: #GAME LOOP------------------------------------------------
     pygame.draw.rect(screen, (0, 250,0), (xpos+28, 732, 4, 20))
     
     for i in range (len(bob)):
-        timer = bob[i].move(timer)
+        bob[i].draw()
 
   
 
