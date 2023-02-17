@@ -20,6 +20,25 @@ timer = 0;
 keys = [False, False, False, False,False, False, False, False] #this list holds whether each key has been pressed
 #this list holds whether each key has been pressed
 
+class Bullet:
+    def __init__(self,xpos,ypos):
+        self.xpos = xpos
+        self.ypos = ypos
+        self.isAlive = False
+    
+    def move(self,xpos,ypos):
+        if self.isAlive == True:
+            self.ypos -= 5
+        if self.ypos < 0:
+            self.isAlive = False
+            self.xpos = xpos
+            self.ypos = ypos
+            
+    def draw(self):
+        pygame.draw.rect(screen,(250,250,250),(self.xpos,self.ypos,3,20))
+
+bullet = Bullet(xpos+28,ypos)
+        
 class Alien:
     def __init__(self,xpos,ypos):
         self.xpos = xpos
@@ -30,22 +49,30 @@ class Alien:
     def draw(self):
         pygame.draw.rect(screen,(250,250,250),(self.xpos,self.ypos, 40,40))
     
-    def move(self):
+    def move(self,time):
         
+        if time % 800 == 0:
+            self.ypos += 100
+            self.direction *=-1
+            return 0
+    
         if timer %100 == 0:
-            self.xpos += 50
-            print ("moving right")
+            self.xpos += 30*self.direction
+        
+        return time
+    
+            
                
 
 bob = []
 for i in range(4):
     for j in range(10):
-        bob.append(Alien(j*70+30, i*70+30))
+        bob.append(Alien(j*70+50, i*70+30))
         
    
 
 while not gameover: #GAME LOOP------------------------------------------------
-    clock.tick(60) #FPS
+    clock.tick(100) #FPS
     timer += 1
     
     
@@ -99,7 +126,7 @@ while not gameover: #GAME LOOP------------------------------------------------
     
     #Physics section--------------------------------------------------------------
     for i in range(len(bob)):
-        bob[i].move()     
+        bob[i].move(timer)     
   
     # RENDER Section--------------------------------------------------------------------------------
             
