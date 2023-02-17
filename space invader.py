@@ -33,6 +33,8 @@ class Bullet:
             self.isAlive = False
             self.xpos = xpos
             self.ypos = ypos
+    
+    
             
     def draw(self):
         pygame.draw.rect(screen,(250,250,250),(self.xpos,self.ypos,3,20))
@@ -119,6 +121,17 @@ while not gameover: #GAME LOOP------------------------------------------------
     #turn off velocity
     else:
         vx = 0
+        
+    #Shoot bullet
+    if shoot == True:
+        bullet.isAlive = True
+    
+    if bullet.isAlive == True:
+        bullet.move(xpos+28, ypos)
+    
+    else:
+        bullet.xpos = xpos +28
+        bullet.ypos = ypos 
 
     #update player position
     xpos+=vx
