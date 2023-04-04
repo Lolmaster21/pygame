@@ -4,17 +4,13 @@ import math
 #Lists
 marbles = [4,6,2,9]
 
-print(marbles)
+#Lists
+marbles = [4,6,2,9]
 print(marbles[2])
-print(marbles[0]*5)
-print(marbles[1]*5)
-print(marbles[2]*5)
-print(marbles[3]*5)
 
-marbles.append(marbles[0]*5)
-marbles.append(marbles[1]*5)
-marbles.append(marbles[2]*5)
-marbles.append(marbles[3]*5)
+for i in range(len(marbles)):
+    marbles[i] *= 5
+
 print(marbles)
 
 class fruit():
